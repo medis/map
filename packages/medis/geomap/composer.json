@@ -1,0 +1,34 @@
+{
+  "name": "medis/geomap",
+  "description": "Interacts with Redis geosearch",
+  "type": "library",
+  "authors": [
+    {
+      "name": "medis",
+      "email": "aubuka@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "secure-http": false,
+    "discard-changes": true
+  },
+  "require": {
+    "predis/predis": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "medis\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "medis\\geomap\\GeoMapServiceProvider"
+      ]
+    }
+  }
+}

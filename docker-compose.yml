@@ -1,0 +1,49 @@
+version: "3"
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  app:
+    container_name: map
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .docker.env
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-tier
+    ports:
+      - 80:80
+    environment:
+      APP_ENV: local
+      CONTAINER_ROLE: app
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - app-tier
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASS}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redisdata:/data
+    networks:
+      - app-tier
+
+volumes:
+  mysqldata:
+    driver: "local"
+  redisdata:
+    driver: "local"
