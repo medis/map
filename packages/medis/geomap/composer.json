@@ -16,8 +16,26 @@
     "secure-http": false,
     "discard-changes": true
   },
+  "repositories": [
+    {
+      "type"    : "package",
+      "package" : {
+        "name"    : "xkjyeah/vue-google-maps",
+        "version" : "0.10.2",
+        "type": "laravel-library",
+        "dist"  : {
+          "url"   : "https://github.com/xkjyeah/vue-google-maps/archive/v0.10.2.zip",
+          "type"  : "zip"
+        },
+        "require": {
+          "composer/installers": "*"
+        }
+      }
+    }
+  ],
   "require": {
-    "predis/predis": "^1.1"
+    "predis/predis": "^1.1",
+    "xkjyeah/vue-google-maps": "^0.10.2"
   },
   "autoload": {
     "psr-4": {
