@@ -3,6 +3,7 @@
 namespace medis\geomap;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class GeoMapServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,10 @@ class GeoMapServiceProvider extends ServiceProvider
     public function boot()
     {
         include __DIR__.'/routes.php';
+
+        Blade::directive('geomap', function() {
+            return view('geomap::map');
+        });
     }
     /**
      * Register services.
@@ -24,5 +29,8 @@ class GeoMapServiceProvider extends ServiceProvider
     {
         // Register controller.
         $this->app->make('medis\geomap\GeoController');
+
+        // Register view.
+        $this->loadViewsFrom(__DIR__.'/views', 'geomap');
     }
 }

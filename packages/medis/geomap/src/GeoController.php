@@ -9,6 +9,7 @@ class GeoController extends Controller
 {
     public function add(string $address)
     {
+        return view('geomap::map');
 //        $key = 'clubs';
 //        $lat = 51.393341;//51.471801;
 //        $lon = -0.304079;//-0.244052;
